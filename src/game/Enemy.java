@@ -22,23 +22,23 @@ public class Enemy extends Entity {
     }
 
     private void bounceOffWall() {
-        if(this.getXPosition() < 0) {
+        int xMin = 0;
+        int xMax = 1;
+        double yMin = 0.15;
+        int yMax = 1;
+
+        if(this.getXPosition() < xMin || this.getXPosition() > xMax) {
             xSpeed = -xSpeed;
         }
-        if(this.getXPosition() > 1) {
-            xSpeed = -xSpeed;
-        }
-        if(this.getYPosition() > 1) {
-            ySpeed = -ySpeed;
-        }
-        if(this.getYPosition() < 0.15) {
+        if(this.getYPosition() > yMax || this.getYPosition() < yMin) {
             ySpeed = -ySpeed;
         }
     }
 
     public boolean isFiring() {
         long now = System.currentTimeMillis();
-        if(now - lastFired > 1000) {
+        int firingTimeSpent = 1000; 
+        if(now - lastFired > firingTimeSpent) {
             lastFired = now;
             return true;
         } else {
